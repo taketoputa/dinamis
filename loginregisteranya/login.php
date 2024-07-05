@@ -55,19 +55,17 @@ closedb($koneksi);
     </style>
 </head>
 <body>
-<div class="logintext">
-        <form>
+    <div class="login-container">
+        <form action="login.php" method="POST" class="login-form">
             <h1 class="login-text">Login</h1>
             <div class="input-container">
-                <input type="email" placeholder="Enter your email" required>
-                <i></i>
+                <input type="email" name="email" placeholder="Enter your email" required>
             </div>
             <div class="input-container">
-                <input type="password" placeholder="Confirm a password" required>
-                <i></i>
+                <input type="password" name="password" placeholder="Enter your password" required>
             </div>
             <div class="actions">
-                <label><input type="checkbox"> Remember me</label>
+                <label><input type="checkbox" name="remember"> Remember me</label>
                 <a href="#">Forgot password?</a>
             </div>
             <button type="submit" class="btn">Login</button>

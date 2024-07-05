@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $param_email = $email;
         $param_password = $hashed_password;
 
-        // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
             header("location: login.php?success=registered");
         }
@@ -46,23 +45,23 @@ closedb($koneksi);
     </style>
 </head>
 <body>
-<div class="logintext">
-        <form>
+    <div class="signup-container">
+        <form action="register.php" method="POST" class="signup-form">
             <h1 class="signup-text">Sign Up</h1>
             <div class="input-container">
-                <input type="text" placeholder="Enter your name" required>
+                <input type="text" name="name" placeholder="Enter your name" required>
             </div>
             <div class="input-container">
-                <input type="email" placeholder="Enter your email" required>
+                <input type="email" name="email" placeholder="Enter your email" required>
             </div>
             <div class="input-container">
-                <input type="password" placeholder="Enter your password" required>
+                <input type="password" name="password" placeholder="Enter your password" required>
             </div>
             <div class="input-container">
-                <input type="password" placeholder="Confirm your password" required>
+                <input type="password" name="confirm_password" placeholder="Confirm your password" required>
             </div>
             <div class="actions">
-                <label><input type="checkbox"> Remember me</label>
+                <label><input type="checkbox" name="remember"> Remember me</label>
             </div>
             <button type="submit" class="btn">Sign Up</button>
             <div class="signin-link">

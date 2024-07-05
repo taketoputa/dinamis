@@ -1,7 +1,34 @@
+<?php
+require_once 'db.php'; 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $message = $_POST['message'];
 
 
+    $sql = "INSERT INTO contact_form(name, email, phone, message) VALUES (?, ?, ?, ?)";
+    
+    if ($stmt = $koneksi->prepare($sql)) {
+        $stmt->bind_param("ssss", $name, $email, $phone, $message);
+        
+        if ($stmt->execute()) {
+            echo "ok";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
 
-
+        // close
+        $stmt->close();
+    } else {
+        echo "Error: " . $koneksi->error;
+    }
+    
+    closedb($koneksi);
+}
+?>
 
 
 <!DOCTYPE html>
@@ -15,7 +42,7 @@
 </head>
 <body>
 
-<form class="forrm">
+<form class="forrm" action="form.php" method="POST">
     <label class="text-name" for="name">Name</label>
     <input type="text" id="name" name="name" required>
 
